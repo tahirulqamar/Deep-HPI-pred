@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Documentation</title>
+<style>
+body {
+    font-family: Courier, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #3465A4;
+}
+
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Overview</h1>
+<p>Deep-HPI-pred is a robust web-based application designed to aid researchers in studying host-pathogen interactions using advanced computational approaches. By integrating state-of-the-art deep learning algorithms with an intuitive graphical user interface, it provides a comprehensive platform for both detection and visualization of host-pathogen interaction networks.</p>
+
+<h2>Key Features</h2>
+<ul>
+<li>Detect Host-Pathogen Interaction Networks: Our application uses advanced deep learning algorithms to predict host-pathogen interactions with high accuracy. Upload your data, and Deep-HPI-pred will analyze it, detecting potential interaction networks based on the information provided.</li>
+<li>Visualize Interaction Networks: Deep-HPI-pred doesn't just detect interaction networks; it also provides tools to visualize them. This allows researchers to better understand the complexities of host-pathogen interactions.</li>
+<li>Generate Hypotheses: By using Deep-HPI-pred, researchers can generate meaningful hypotheses for their studies. These can then be tested in a lab setting, driving new discoveries and breakthroughs.</li>
+<li>Design Experiments: In addition to hypothesis generation, our tool can also assist in designing appropriate experiments. By providing a clear view of the host-pathogen interaction network, it helps researchers plan effective and efficient experimental designs.</li>
+<li>Regular Updates and Improvements: We are continuously working to enhance our tool's accuracy and usability. Our users will benefit from ongoing updates and improvements to ensure they are always using the best possible prediction tool.</li>
+</ul>
+
+<h2>Intended Users</h2>
+<p>Deep-HPI-pred is designed to serve both experimental biologists studying host-pathogen interactions in a lab setting and bioinformaticians interested in computational approaches. The straightforward user interface ensures ease of use for all, regardless of computational expertise.</p>
+
+<h2>User Interface</h2>
+<p>The app's UI contains several tab panels, each serving a distinct purpose:</p>
+<ul>
+<li>Home: This panel provides an introduction to the application, and quick links to the app's GitHub repository, documentation, FAQ, and contact information.</li>
+<li>Browse Search: In this panel, users can upload their own data or load demonstration data. The file format for uploading data is CSV and it should include UNIPROTKB identifiers.</li>
+<li>Results: This panel displays the network visualization of the predicted interactions along with a downloadable data table of results.</li>
+<li>GO Analysis: In this panel, a Gene Ontology (GO) enrichment analysis is performed, and the results can be visualized in plot.</li>
+</ul>
+
+<h3>Server Logic</h3>
+<ul>
+<li>The server logic primarily revolves around handling user input and rendering results.</li>
+<li>User file uploads are handled, ensuring data is properly loaded into the application.</li>
+<li>The application also provides demonstration data that can be loaded with a button click.</li>
+<li>Users can train the model and predict interactions with their data or the demonstration data.</li>
+<li>The predicted interactions are then rendered as network visualizations.</li>
+<li>GO enrichment analysis is performed and results are displayed as different plot types, which can be selected by the user.</li>
+</ul>
+<h3>Network Visualizations</h3>
+<p>Network visualizations are created using the visNetwork package, with nodes representing proteins (colored differently based on whether they are host or pathogen proteins) and edges representing interactions between these proteins.</p>
+
+<h3>GO Enrichment Analysis</h3>
+<p>GO enrichment analysis provides a means of interpreting the functional aspects of the results. It is performed on the predicted interactions, and the results can be visualized in various ways.</p>
+
+<h3>Note</h3>
+<p>All results, including tables and plots, can be downloaded for further analysis or reporting purposes.</p>
+
+<h3>Libraries</h3>
+<p>This application uses numerous libraries, including but not limited to:</p>
+<ul>
+<li>shiny for building the web app.</li>
+<li>visNetwork for network visualization.</li>
+<li>igraph, tidygraph and ggraph for network analysis and visualization.</li>
+<li>dplyr and tidyverse for data manipulation.</li>
+<li>ggplot2 for data visualization.</li>
+<li>magrittr for piping (%>%) functions.</li>
+<li>httr and XML for handling HTTP requests and XML data.</li>
+<li>tidyr for data tidying.</li>
+<li>shinythemes for shiny themes.</li>
+<li>DOSE for disease ontology semantic and enrichment analysis.</li>
+</ul>
+
+<h3>Additional Notes</h3>
+<p>Please refer to the GitHub repository for more details about the functionality and usage of this tool.</p>
+
+</div>
+
+</body>
+</html>
