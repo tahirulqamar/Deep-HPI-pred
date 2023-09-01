@@ -1,7 +1,7 @@
 server <- function(input, output, session) {
   observeEvent(input$show_faq, {
     shinyalert::shinyalert(
-      title = "Frequently Asked Questions",
+      title = "Frequently Ask Questions",
       text = paste0(
         "1. How to use the Deep-HPI-pred app?\n",
         "Answer: To use the application, select an option from the menu and follow the provided steps. You can either upload your own data or use the demo data provided.\n\n",
