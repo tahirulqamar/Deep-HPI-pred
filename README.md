@@ -13,4 +13,4 @@ Intriguingly, Deep-HPI-pred showcases an advanced feature - the integration of G
 2. From the sidebar, you can choose to upload your own CSV data or use the demo data provided.
 3. Select "Train and Predict" to initiate the interaction prediction using the provided data.
 4. The "Results" tab will display the network visualization and predicted interaction data.
-5. The "GO Analysis" tab allows you to conduct GO enrichment analysis and visualize it as a Network Graph. THe network graph can be downloaded for further analysis.
+5. The "GO Analysis" tab allows you to conduct GO enrichment analysis and visualize it as a Network Graph. The network graph can be downloaded for further analysis.
