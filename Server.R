@@ -24,10 +24,30 @@ server <- function(input, output, session) {
   observeEvent(input$show_contact, {
     shinyalert::shinyalert(
       title = "Contact",
-      text = "For any questions or concerns, feel free to reach out to us. Contact: tahirulqamar@gcuf.edu.pk (Dr. Muhammad Tahir ul Qamar)",
-      type = "info"
+      text = paste0(
+        "For any questions or concerns, feel free to reach out to us. Contact details:<br><br>",
+        "<div style='font-size: 14px; line-height: 1.5;'>",
+        "<span style='font-weight: bold; color: #2c3e50;'>Dr. Muhammad Tahir ul Qamar:</span> ",
+        "<a href='mailto:m.tahirulqamar@hotmail.com' style='color: #3498db;'>m.tahirulqamar@hotmail.com</a><br>",
+        
+        "<span style='font-weight: bold; color: #2c3e50;'>Ms. Fatima Noor:</span> ",
+        "<a href='mailto:fatimanoor1122@yahoo.com' style='color: #3498db;'>fatimanoor1122@yahoo.com</a><br>",
+        
+        "<span style='font-weight: bold; color: #2c3e50;'>Dr. Xi-Tong Zhu:</span> ",
+        "<a href='mailto:z724@qq.com' style='color: #3498db;'>z724@qq.com</a><br>",
+        
+        "<span style='font-weight: bold; color: #2c3e50;'>Dr. Yi-Xiong Guo:</span> ",
+        "<a href='mailto:guoyixiong@webmail.hzau.edu.cn' style='color: #3498db;'>guoyixiong@webmail.hzau.edu.cn</a><br>",
+        
+        "<span style='font-weight: bold; color: #2c3e50;'>Prof. Ling-Ling Chen:</span> ",
+        "<a href='mailto:llchen@gxu.edu.cn' style='color: #3498db;'>llchen@gxu.edu.cn</a>",
+        "</div>"
+      ),
+      type = "info",
+      html = TRUE
     )
   })
+  
   rv <- reactiveValues(data = NULL, demo = NULL, go_annotations = NULL)
   
   observeEvent(input$file1, {
