@@ -19,10 +19,12 @@ Deep-HPI-pred app is freely accessible on its homepage: https://cbi.gxu.edu.cn/s
 
 ## Contact Details
 
-To provide feedback, ask questions, or for more insights:                                                                                                                 
-•	Dr. Muhammad Tahir ul Qamar (m.tahirulqamar@hotmail.com)
-•	Ms. Fatima Noor (fatimanoor1122@yahoo.com)
-•	Dr. Xi-Tong Zhu (z724@qq.com)
-•	Dr. Yi-Xiong Guo (guoyixiong@webmail.hzau.edu.cn)
-•	Prof. Ling-Ling Chen (llchen@gxu.edu.cn)
+To provide feedback, ask questions, or for more insights:
 
+<ul style="margin-bottom: 0; padding-left: 20px;">
+  <li style="margin-bottom: 5px;">Dr. Muhammad Tahir ul Qamar (<a href="mailto:m.tahirulqamar@hotmail.com">m.tahirulqamar@hotmail.com</a>)</li>
+  <li style="margin-bottom: 5px;">Ms. Fatima Noor (<a href="mailto:fatimanoor1122@yahoo.com">fatimanoor1122@yahoo.com</a>)</li>
+  <li style="margin-bottom: 5px;">Dr. Xi-Tong Zhu (<a href="mailto:z724@qq.com">z724@qq.com</a>)</li>
+  <li style="margin-bottom: 5px;">Dr. Yi-Xiong Guo (<a href="mailto:guoyixiong@webmail.hzau.edu.cn">guoyixiong@webmail.hzau.edu.cn</a>)</li>
+  <li style="margin-bottom: 5px;">Prof. Ling-Ling Chen (<a href="mailto:llchen@gxu.edu.cn">llchen@gxu.edu.cn</a>)</li>
+</ul>
