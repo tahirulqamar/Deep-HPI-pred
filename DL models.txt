@@ -1,73 +1,114 @@
 ###1D-CNN###
+# Create a partition to split the data into training and independent test sets
 split_index <- createDataPartition(shuffled_dataset_features_df$interaction, p = 0.8, list = FALSE)
 train_data <- shuffled_dataset_features_df[split_index, ]
 independent_test_data <- shuffled_dataset_features_df[-split_index, ]
+
+# Prepare the feature matrix 'X' from the training data and scale it
 X <- train_data[, c("pathogen_degree_centrality", "host_degree_centrality")]
 X_normalized <- scale(X)
+
+# Reshape the scaled feature matrix 'X' for CNN input
 X_reshaped <- array_reshape(X_normalized, c(nrow(X_normalized), ncol(X_normalized), 1))
+
+# Prepare the response vector 'y' from the training data
 y <- train_data$interaction
+
+# Set seed for reproducibility
 set.seed(42)
+
+# Loop through cross-validation folds
 for (i in 1:length(cv_folds)) {
   cat("Processing fold", i, "\n")  
+  # Select training and validation data for the current fold
   train_indices <- setdiff(1:nrow(X_normalized), cv_folds[[i]])
   train_X_fold <- X_reshaped[train_indices, , ]
   train_y_fold <- y[train_indices]
+  
   val_indices <- cv_folds[[i]]
   val_X_fold <- X_reshaped[val_indices, , ]
   val_y_fold <- y[val_indices]
+  
+  # Define the input shape for the 1D convolutional network
   input_shape <- c(ncol(X_normalized), 1) 
+  
+  # Build the 1D-CNN model architecture
   cnn_model <- keras_model_sequential() %>%
     layer_conv_1d(filters = 16, kernel_size = 2, activation = "relu", input_shape = input_shape) %>%
     layer_global_max_pooling_1d() %>%
     layer_dense(units = 64, activation = "relu") %>%
     layer_dense(units = 1, activation = "sigmoid")
+  
+  # Compile the model with Adam optimizer and binary crossentropy loss
   cnn_model %>% compile(
     optimizer = optimizer_adam(learning_rate = 0.001),
     loss = "binary_crossentropy",
     metrics = c("accuracy")
   )
+  
+  # Fit the model on the training data and validate using the validation set
   history <- cnn_model %>% fit(
     train_X_fold, train_y_fold,
     epochs = 50,
     batch_size = 32,
     validation_data = list(val_X_fold, val_y_fold)
   )
+  
+  # Predict and convert probabilities to binary class predictions
   predictions <- cnn_model %>% predict(val_X_fold) %>% `>`(0.5) %>% k_cast("int32")
   predictions <- as.integer(predictions)
-
+}
 
 ###RNN###
+# Similar to the 1D-CNN, create a partition to split the data for the RNN
 split_index <- createDataPartition(shuffled_dataset_features_df$interaction, p = 0.8, list = FALSE)
 train_data <- shuffled_dataset_features_df[split_index, ]
 independent_test_data <- shuffled_dataset_features_df[-split_index, ]
+
+# Prepare the feature matrix 'X' from the training data with more features for the RNN and scale it
 X <- train_data[, c("pathogen_hub_score", "host_hub_score",
                     "pathogen_eigenvector_centrality", "host_eigenvector_centrality")]
 X_normalized <- scale(X)
+
+# Reshape the scaled feature matrix 'X' for RNN input
 X_reshaped <- array_reshape(X_normalized, c(nrow(X_normalized), ncol(X_normalized), 1))
+
+# Prepare the response vector 'y' from the training data
 y <- train_data$interaction
+
+# Define a custom training control function for the RNN
 custom_train_control <- function(X, y, train_indices, test_indices) {
+  # Prepare training and test sets based on provided indices
   X_train <- X[train_indices, , drop = FALSE]
   y_train <- y[train_indices]
   X_test <- X[test_indices, , drop = FALSE]
   y_test <- y[test_indices]
+  
+  # Reshape data for RNN input
   X_train_reshaped <- array_reshape(X_train, c(nrow(X_train), 1, ncol(X_train)))
   X_test_reshaped <- array_reshape(X_test, c(nrow(X_test), 1, ncol(X_test)))
+  
+  # Build the RNN model architecture
   model <- keras_model_sequential() %>%
     layer_simple_rnn(units = 8, input_shape = c(1, 2), activation = "relu") %>%
     layer_dense(units = 1, activation = "sigmoid")
+  
+  # Compile the model with Adam optimizer and binary crossentropy loss
   model %>% compile(
     optimizer = "adam",
     loss = "binary_crossentropy",
     metrics = c("accuracy")
   )
+  
+  # Fit the RNN model on the training data and validate using a validation split
   history <- model %>% fit(
     X_train_reshaped, y_train,
     epochs = 50,
     batch_size = 32,
     validation_split = 0.2
   )
+  
+  # Predict and convert probabilities to binary class predictions
   predictions <- model %>% predict(X_test_reshaped) %>% `>`(0.5) %>% k_cast("int32")
   predictions <- as.integer(predictions)
-  
-  
-
+}
