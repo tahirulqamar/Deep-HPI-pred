@@ -47,7 +47,13 @@ server <- function(input, output, session) {
       html = TRUE
     )
   })
-  
+  observeEvent(input$show_cite, {
+    shinyalert(
+      title = "Citation",
+      text = "ul Qamar, M. T., Noor, F., Guo, Y. X., Zhu, X. T., & Chen, L. L. (2023). Deep-HPI-pred: an R-Shiny applet for network-based classification and prediction of Host-Pathogen protein-protein interactions. Computational and Structural Biotechnology Journal.",
+      type = "info"
+    )
+  })
   rv <- reactiveValues(data = NULL, demo = NULL, go_annotations = NULL)
   
   observeEvent(input$file1, {
