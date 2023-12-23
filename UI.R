@@ -63,7 +63,8 @@ ui <- navbarPage(
                tags$ul(
                  tags$li(tags$a(href = "https://github.com/tahirulqamar/Deep-HPI-pred", "GitHub")),
                  tags$li(tags$a(onClick = 'Shiny.setInputValue("show_faq", Math.random(), {priority: "event"})', "FAQ")),
-                 tags$li(tags$a(onClick = 'Shiny.setInputValue("show_contact", Math.random(), {priority: "event"})', "Contact Us"))
+                 tags$li(tags$a(onClick = 'Shiny.setInputValue("show_contact", Math.random(), {priority: "event"})', "Contact Us")),
+                 tags$li(tags$a(onClick = 'Shiny.setInputValue("show_cite", Math.random(), {priority: "event"})', "Cite Us"))
                )
              ),
              mainPanel(
